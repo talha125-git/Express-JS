@@ -18,4 +18,9 @@ app.post("/submit-user", (req, resp) => {
     resp.render('SubmitUser', { name, age, email }); // pass data to EJS
 });
 
+app.get("/users", (req, resp) => {
+    const users = ['Malik','Abutalha','Raheem','khan','Ahmad' ]
+    resp.render("users",{users:users,isLogin:false})
+});
+
 app.listen(3200)
