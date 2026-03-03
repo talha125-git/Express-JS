@@ -1,3 +1,3 @@
 git add .
-git commit -m "add 8_Dynamic Routes"
+git commit -m "add API example"
 git push -u origin main   
