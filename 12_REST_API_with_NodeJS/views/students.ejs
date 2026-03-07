@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Navbar */
+
+        .navbar {
+            background: #0f172a;
+            padding: 12px 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: 500;
+        }
+
+        .navbar a:hover {
+            color: #38bdf8;
+        }
+
+        /* Container */
+
+        .container {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 7px;
+            text-align: center;
+        }
+
+        th {
+            background: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f2f2f2;
+        }
+
+        tr:hover {
+            background: #e6f2ff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+    <div class="navbar">
+        <a href="/api">API</a>
+        <a href="/add">Add Students</a>
+    </div>
+
+
+    <div class="container">
+
+        <h1>Students Records</h1>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Department</th>
+            </tr>
+
+            <% students.forEach(student=> { %>
+
+                <tr>
+                    <td>
+                        <%= student.id %>
+                    </td>
+                    <td>
+                        <%= student.name %>
+                    </td>
+                    <td>
+                        <%= student.age %>
+                    </td>
+                    <td>
+                        <%= student.dept %>
+                    </td>
+                </tr>
+
+                <% }) %>
+
+        </table>
+
+    </div>
+
+</body>
+
+</html>
