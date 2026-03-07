@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students</title>
+</head>
+<body>
+    <h1>Students records are here </h1>
+
+    <table border="1">
+        <tr >
+            <td>ID</td>
+            <td>Name</td>
+            <td>Age</td>
+            <td>Department</td>
+        </tr>
+
+       <% students.forEach(student=>{ %>
+
+        <tr >
+            <td><%= student.id  %></td>
+            <td><%= student.name  %></td>
+            <td><%= student.age  %></td>
+            <td><%= student.dept  %></td>
+            
+        </tr>
+
+        <% }) %>
+    </table>
+</body>
+</html>

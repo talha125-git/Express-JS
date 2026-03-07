@@ -17,7 +17,7 @@ async function dbConnection() {
 
         console.log(result);
    
-}
+}   
 
 dbConnection();
 
