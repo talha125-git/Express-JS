@@ -6,6 +6,8 @@ const app = express();
 // Middleware to read form data
 app.use(express.urlencoded({extended:true}))
 
+app.use(express.json())
+
 const dbName = "school";
 const url = "mongodb://localhost:27017";
 const client = new MongoClient(url);
@@ -45,6 +47,23 @@ client.connect().then((connection) => {
         
         resp.send("students");
     });
+
+    // POST Method REST API
+
+   app.post("/add-student-api",async (req,resp) =>{
+    console.log(req.body);
+    const {id,name,age,dept} = req.body;
+
+    if (!id || !name || !age || !dept) {
+        resp.send({message:"operation failed", success:false})
+        return
+    }
+
+    const collection = db.collection("students")
+    const results = await collection.insertOne(req.body)
+
+    resp.send({message:"Data stored in MDB", success:true, result:results})
+})
 
 });
 
