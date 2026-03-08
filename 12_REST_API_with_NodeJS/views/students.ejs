@@ -41,7 +41,7 @@
             padding: 15px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
+            max-width: auto;
         }
 
         h1 {
@@ -95,6 +95,7 @@
                 <th>Name</th>
                 <th>Age</th>
                 <th>Department</th>
+                <th>Operation</th>
             </tr>
 
             <% students.forEach(student=> { %>
@@ -111,6 +112,9 @@
                     </td>
                     <td>
                         <%= student.dept %>
+                    </td>
+                    <td>
+                        <a href="/delete/<%= student._id %>">Delete</a>
                     </td>
                 </tr>
 

@@ -1,10 +1,10 @@
 import express from "express";
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 
 const app = express();
 
 // Middleware to read form data
-app.use(express.urlencoded({extended:true}))
+app.use(express.urlencoded({ extended: true }))
 
 app.use(express.json())
 
@@ -44,26 +44,66 @@ client.connect().then((connection) => {
         const collection = db.collection("students")
         const results = await collection.insertOne(req.body)
         console.log(results);
-        
+
         resp.send("students");
     });
 
     // POST Method REST API
 
-   app.post("/add-student-api",async (req,resp) =>{
-    console.log(req.body);
-    const {id,name,age,dept} = req.body;
+    app.post("/add-student-api", async (req, resp) => {
+        console.log(req.body);
+        const { id, name, age, dept } = req.body;
 
-    if (!id || !name || !age || !dept) {
-        resp.send({message:"operation failed", success:false})
-        return
-    }
+        if (!id || !name || !age || !dept) {
+            resp.send({ message: "operation failed", success: false })
+            return
+        }
 
-    const collection = db.collection("students")
-    const results = await collection.insertOne(req.body)
+        const collection = db.collection("students")
+        const results = await collection.insertOne(req.body)
 
-    resp.send({message:"Data stored in MDB", success:true, result:results})
-})
+        resp.send({ message: "Data stored in MDB", success: true, result: results })
+
+    })
+    app.delete("/delete/:id", async (req, resp) => {
+        console.log(req.params.id);
+        const collection = db.collection("students")
+        const results = await collection.deleteOne({ _id: new ObjectId(req.params.id) })
+        if (results) {
+            resp.send({
+                message: "studend record deleted",
+                success: true
+            })
+
+        } else {
+            resp.send({
+                message: "studend record not deleted try after same time ",
+                success: false
+            })
+        }
+
+
+    })
+    app.get("/delete/:id", async (req, resp) => {
+        const collection = db.collection("students")
+        const results = await collection.deleteOne({ _id: new ObjectId(req.params.id) })
+
+        if (results.deletedCount > 0) {
+            resp.send(`
+            <script>
+                alert("Student record deleted successfully");
+                window.location.replace("/");
+            </script>
+        `)
+        } else {
+            resp.send(`
+            <script>
+                alert("Student record not deleted");
+                window.location.replace("/");
+            </script>
+        `)
+        }
+    })
 
 });
 
