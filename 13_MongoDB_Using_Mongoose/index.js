@@ -17,28 +17,74 @@ app.get("/", async (req,resp)=>{
 })
 
 // Make Post method REST API with Mongoose to insert data
-app.post("/save",async (req,resp)=>{
+app.post("/save", async (req, resp) => {
     console.log(req.body);
-    // Validation
-    const {id,name,age,dept}= req.body
-    if(!req.body || !id || !name ||!age ||!dept){
-        resp.send({
-            message: "data not store",
-            success:false,
-            storedinfo:null
+
+    const { id, name, age, dept } = req.body
+
+    // validation
+    if (!req.body || !id || !name || !age || !dept) {
+        return resp.send({
+            message: "data not stored",
+            success: false,
+            storedinfo: null
         })
     }
 
     const studentData = await studentModel.create(req.body)
-    
+
     resp.send({
         message: "data saved",
+        success: true,
+        storedinfo: studentData
+    })
+})
+
+// Make UPDATE REST API with Mongoose
+app.put("/update/:id",async (req,resp)=>{
+    const id = req.params.id
+    console.log(req.body,id);
+    
+    const studeentdata = await studentModel.findByIdAndUpdate(id,{
+        ...req.body
+    })
+    resp.send({
+        message: "data Updated",
         success:true,
-        storedinfo:studentData
+        info:studeentdata
+    })
+})
+
+// Make DELETE REST API with Mongoose
+app.delete("/delete/:id",async (req,resp)=>{
+    const id = req.params.id
+    
+    
+    const studeentdata = await studentModel.findByIdAndDelete(id,{
+        ...req.body
+    })
+    resp.send({
+        message: "data Deleted",
+        success:true,
+        info:studeentdata
     })
 })
 
 app.listen(3200)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // async function dbConnection() {
 //    await mangoose.connect("mongodb://localhost:27017/school")
