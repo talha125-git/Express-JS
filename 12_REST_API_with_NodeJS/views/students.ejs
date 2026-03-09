@@ -96,6 +96,7 @@
                 <th>Age</th>
                 <th>Department</th>
                 <th>Operation</th>
+                <th>Upadte Students </th>
             </tr>
 
             <% students.forEach(student=> { %>
@@ -115,6 +116,9 @@
                     </td>
                     <td>
                         <a href="/delete/<%= student._id %>">Delete</a>
+                    </td>
+                    <td>
+                        <a href="/student/<%= student._id %>">Upadte</a>
                     </td>
                 </tr>
 

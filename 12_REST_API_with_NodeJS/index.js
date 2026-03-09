@@ -105,6 +105,66 @@ client.connect().then((connection) => {
         }
     })
 
+    app.get("/student/:id", async (req, resp) => {
+        const collection = db.collection("students")
+        const result = await collection.findOne({ _id: new ObjectId(req.params.id) })
+        resp.render("update-student", { result })
+    })
+
+    app.get("/student/:id", async (req, resp) => {
+        const collection = db.collection("students")
+        const result = await collection.findOne({ _id: new ObjectId(req.params.id) })
+
+        resp.send({
+            message: "data fetched",
+            success: true,
+            result: result,
+        })
+    })
+    app.post("/update/:id", async (req, resp) => {
+        console.log(req.body);
+        console.log(req.params.id);
+
+        const collection = db.collection("students");
+
+        const filter = { _id: new ObjectId(req.params.id) };
+        const updatee = { $set: req.body };
+
+        const result = await collection.updateOne(filter, updatee);
+
+        if(result){
+        resp.send("Data updated");    
+        }else{
+        resp.send("Data not updated");    
+        }
+    })
+
+    app.put("/update/:id", async (req, resp) => {
+        console.log(req.body);
+        console.log(req.params.id);
+
+        const collection = db.collection("students");
+
+        const filter = { _id: new ObjectId(req.params.id) };
+        const updatee = { $set: req.body };
+
+        const result = await collection.updateOne(filter, updatee);
+
+        if(result){
+        resp.send({
+            message: "Data Updated ",
+            success: true,
+            result: result,
+        })    
+        }else{
+        resp.send({
+            message: "Data not Updated",
+            success: false,
+            result: result,
+        })  
+        }
+    })
+
 });
 
 // Start server
