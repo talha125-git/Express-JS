@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+import { MongoClient } from "../17_Set_and_Get_Cookies/node_modules/mongodb/mongodb";
 
 const url = "mongodb+srv://talha_mongo:collage@cluster0.aycxufx.mongodb.net/?appName=Cluster0";
 const database = "school";
