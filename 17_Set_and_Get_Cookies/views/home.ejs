@@ -1,12 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home </title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home</title>
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
 </head>
-<body>
-    <h1>Welcome <%= name %></h1>
-    <h2><a href="/login">Login</a></h2>
+
+<body class="bg-gradient-to-r from-blue-500 to-indigo-600 min-h-screen flex items-center justify-center">
+
+    <!-- Card -->
+    <div class="bg-white shadow-2xl rounded-2xl p-10 w-[90%] max-w-md text-center">
+
+        <!-- Title -->
+        <h1 class="text-3xl font-bold text-gray-800 mb-4">
+            Welcome 
+            <span class="text-blue-600"><%= name %></span>
+        </h1>
+
+        <!-- Description -->
+        <p class="text-gray-500 mb-8">
+            You are successfully logged in. Click below to login again.
+        </p>
+
+        <!-- Login Button -->
+        <a href="/login" 
+           class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition duration-300 inline-block">
+            Go to Login
+        </a>
+
+    </div>
+
 </body>
 </html>

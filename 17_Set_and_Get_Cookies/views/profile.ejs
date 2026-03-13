@@ -1,12 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile</title>
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
 </head>
-<body>
-    <h1>User logged in </h1>
-    <a href="/"> go to home </a>
+
+<body class="bg-gradient-to-r from-blue-500 to-indigo-600 min-h-screen flex items-center justify-center">
+
+    <!-- Profile Card -->
+    <div class="bg-white shadow-2xl rounded-2xl p-10 w-[90%] max-w-md text-center">
+
+        <!-- Success Icon -->
+        <div class="text-green-500 text-5xl mb-4">
+            ✔
+        </div>
+
+        <!-- Title -->
+        <h1 class="text-3xl font-bold text-gray-800 mb-3">
+            User Logged In
+        </h1>
+
+        <!-- Message -->
+        <p class="text-gray-500 mb-8">
+            You have successfully logged into your account.
+        </p>
+
+        <!-- Home Button -->
+        <a href="/" 
+           class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition duration-300 inline-block">
+            Go to Home
+        </a>
+
+    </div>
+
 </body>
 </html>
